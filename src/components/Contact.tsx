@@ -52,20 +52,38 @@ export const Contact: React.FC = () => {
     setStatusMessage('');
 
     try {
-      /**
-       * SUBMISSION LOGIC:
-       * 1. Primary: POST to /api/contact (Vercel Serverless Function with Resend)
-       * 2. Fallback: If you prefer zero backend code, replace with Web3Forms:
-       * 
-       * const response = await fetch("https://api.web3forms.com/submit", {
-       *   method: "POST",
-       *   headers: { "Content-Type": "application/json" },
-       *   body: JSON.stringify({
-       *     access_key: "YOUR_WEB3FORMS_ACCESS_KEY",
-       *     ...data
-       *   }),
-       * });
-       */
+      const web3FormsKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+
+      // Method 1: Web3Forms (Instant direct inbox delivery to yapfrancis555@gmail.com)
+      if (web3FormsKey) {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify({
+            access_key: web3FormsKey,
+            name: data.name,
+            email: data.email,
+            message: data.message,
+            subject: `[Portfolio Inquiry] New message from ${data.name}`,
+            from_name: 'Portfolio Contact Form',
+          }),
+        });
+
+        const resData = await response.json();
+        if (resData.success) {
+          setSubmitStatus('success');
+          setStatusMessage("Message sent successfully! It has been dispatched to yapfrancis555@gmail.com.");
+          reset();
+          return;
+        } else {
+          throw new Error(resData.message || 'Web3Forms dispatch error');
+        }
+      }
+
+      // Method 2: Vercel Serverless Function (/api/contact with Resend)
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -79,11 +97,11 @@ export const Contact: React.FC = () => {
         setStatusMessage("Message sent successfully! I'll get back to you shortly.");
         reset();
       } else {
-        // Graceful handling for preview or missing key
         const errorData = await response.json().catch(() => ({}));
         if (response.status === 404 || response.status === 501) {
+          // Local Vite dev preview without Vercel backend running
           setSubmitStatus('success');
-          setStatusMessage("Thank you! Message transmitted. (Demo Mode: connected to /api/contact)");
+          setStatusMessage("Transmission received in demo mode. To receive real emails in your inbox, add your free Web3Forms key or Resend API key.");
           reset();
         } else {
           throw new Error(errorData.error || 'Failed to dispatch message');
@@ -92,7 +110,7 @@ export const Contact: React.FC = () => {
     } catch (err: any) {
       if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
         setSubmitStatus('success');
-        setStatusMessage("Thank you! Message received in local test mode.");
+        setStatusMessage("Transmission received in local test mode! Configure your Web3Forms or Resend key in .env to receive real emails.");
         reset();
       } else {
         setSubmitStatus('error');
