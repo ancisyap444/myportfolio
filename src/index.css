@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #06090A;
+    color: #F2F5F3;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Custom subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #06090A;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(57, 255, 136, 0.18);
+    border-radius: 4px;
+    border: 2px solid #06090A;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(57, 255, 136, 0.38);
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 16px rgba(57, 255, 136, 0.5);
+  }
+
+  .glow-box-primary {
+    box-shadow: 0 0 24px rgba(57, 255, 136, 0.35);
+  }
+
+  .glow-box-subtle {
+    box-shadow: 0 0 20px rgba(57, 255, 136, 0.18);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(120, 255, 170, 0.08);
+  }
+
+  .glass-card-hover {
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .glass-card-hover:hover {
+    background: rgba(255, 255, 255, 0.045);
+    border-color: rgba(57, 255, 136, 0.28);
+    box-shadow: 0 0 24px rgba(57, 255, 136, 0.15), 0 12px 30px rgba(0, 0, 0, 0.4);
+    transform: translateY(-4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
