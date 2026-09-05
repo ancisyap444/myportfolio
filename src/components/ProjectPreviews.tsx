@@ -1,104 +1,82 @@
-import React from 'react';
-import { ShoppingCart, ShieldCheck, TrendingUp, Package, Check, Smartphone } from 'lucide-react';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { ShieldCheck, TrendingUp, Smartphone, Users, ExternalLink, Sparkles } from 'lucide-react';
+import gsyScreenshot from '../assets/gsy-hardware.png';
 
 export const GsyHardwarePreview: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Parallax subtle pan on scroll
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start end', 'end start'],
+  });
+
+  const imageY = useTransform(scrollYProgress, [0, 1], [-8, 8]);
+
   return (
-    <div className="w-full h-full bg-[#080D0F] rounded-xl overflow-hidden border border-border-custom flex flex-col font-sans select-none">
+    <div 
+      ref={containerRef}
+      className="w-full h-full bg-[#080D0F] rounded-xl overflow-hidden border border-border-custom flex flex-col font-sans select-none group/gsy"
+    >
       {/* Browser Window Chrome */}
       <div className="px-3.5 py-2.5 bg-[#0D1315] border-b border-border-custom flex items-center justify-between text-xs">
         <div className="flex items-center gap-1.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]/70" />
-          <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]/70" />
-          <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]/70" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]/80" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]/80" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]/80" />
         </div>
-        <div className="flex items-center gap-2 bg-[#06090A] px-3 py-0.5 rounded-md border border-border-custom text-[11px] font-mono text-text-muted">
+
+        {/* Address bar */}
+        <div className="flex items-center gap-2 bg-[#06090A] px-3.5 py-1 rounded-md border border-border-custom text-[11px] font-mono text-text-muted">
           <ShieldCheck className="w-3 h-3 text-primary" />
-          <span>gsy-hardware.store/catalog</span>
+          <span className="text-text-primary/90">gsyhardware.com</span>
+          <span className="text-primary/80 font-mono text-[10px] hidden sm:inline">| SSL 256-bit</span>
         </div>
-        <div className="flex items-center gap-2 font-mono text-[10px] text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/20">
-          <span>RLS: ACTIVE</span>
+
+        {/* Real Badge from Francis's actual app: 1 live store visitors today */}
+        <div className="flex items-center gap-1.5 font-mono text-[10px] text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/20">
+          <span className="w-1.5 h-1.5 rounded-full bg-primary animate-ping" />
+          <span className="hidden sm:inline">1 LIVE VISITOR</span>
+          <span className="sm:hidden">LIVE</span>
         </div>
       </div>
 
-      {/* App Header */}
-      <div className="px-4 py-2 bg-[#06090A]/90 border-b border-border-custom/80 flex items-center justify-between text-xs">
-        <div className="flex items-center gap-2">
-          <Package className="w-4 h-4 text-primary" />
-          <span className="font-semibold text-text-primary tracking-tight">GSY HARDWARE</span>
-          <span className="text-[10px] text-primary/80 font-mono hidden sm:inline">| STOREFRONT</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1 bg-surface px-2 py-1 rounded border border-border-custom text-[11px] text-text-primary">
-            <ShoppingCart className="w-3 h-3 text-primary" />
-            <span>3 items</span>
-          </div>
-          <span className="text-[10px] font-mono bg-emerald-950 text-primary px-2 py-0.5 rounded border border-primary/30">
-            Admin Auth
+      {/* Main Image Showcase with Real GSY Hardware Screenshot */}
+      <div className="relative flex-1 overflow-hidden bg-[#06090A]">
+        {/* Parallax Image */}
+        <motion.div
+          style={{ y: imageY }}
+          className="w-full h-[106%] -mt-[3%] relative"
+        >
+          <img
+            src={gsyScreenshot}
+            alt="GSY Hardware E-Commerce Platform interface built by Francis Vernard Yap"
+            className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover/gsy:scale-[1.03]"
+            loading="lazy"
+          />
+          {/* Subtle gradient edges */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#06090A]/70 via-transparent to-black/10 pointer-events-none" />
+        </motion.div>
+
+        {/* Floating Telemetry Chips */}
+        <div className="absolute top-3 left-3 flex flex-wrap gap-2 pointer-events-none">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#06090A]/90 backdrop-blur-md border border-primary/30 font-mono text-[10px] text-primary shadow-lg">
+            <Users className="w-3 h-3 text-primary" />
+            <span>Storefront & Admin RLS</span>
+          </span>
+          <span className="hidden sm:inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-[#06090A]/90 backdrop-blur-md border border-border-custom font-mono text-[10px] text-text-muted">
+            <Sparkles className="w-2.5 h-2.5 text-primary" />
+            <span>Wholesale & PDC Terms</span>
           </span>
         </div>
-      </div>
 
-      {/* Main Store Mockup Body */}
-      <div className="p-4 flex-1 flex flex-col justify-between gap-3 overflow-hidden bg-gradient-to-b from-[#080D0F] to-[#06090A]">
-        {/* Top Mini Stats */}
-        <div className="grid grid-cols-3 gap-2 text-center text-[10px] font-mono">
-          <div className="p-2 rounded-lg bg-surface/70 border border-border-custom">
-            <span className="text-text-muted block text-[9px]">IN STOCK</span>
-            <span className="text-primary font-bold text-xs">1,248 Units</span>
-          </div>
-          <div className="p-2 rounded-lg bg-surface/70 border border-border-custom">
-            <span className="text-text-muted block text-[9px]">ACTIVE ORDERS</span>
-            <span className="text-text-primary font-bold text-xs">18 Pending</span>
-          </div>
-          <div className="p-2 rounded-lg bg-surface/70 border border-border-custom">
-            <span className="text-text-muted block text-[9px]">SECURITY</span>
-            <span className="text-primary font-bold text-xs">Postgres RLS</span>
-          </div>
-        </div>
-
-        {/* Product Grid Mockup */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-          <div className="p-2.5 rounded-lg bg-surface/50 border border-border-custom flex flex-col justify-between">
-            <div>
-              <div className="h-14 rounded bg-[#0D1416] border border-border-custom flex items-center justify-center mb-2">
-                <span className="font-mono text-[10px] text-primary/80">⚡ 20V Cordless Drill</span>
-              </div>
-              <p className="text-[11px] font-medium text-text-primary truncate">Pro Impact Drill Kit</p>
-              <p className="font-mono text-[10px] text-primary">₱ 3,450.00</p>
-            </div>
-            <div className="mt-2 pt-1.5 border-t border-border-custom/50 flex justify-between items-center text-[9px] text-text-muted">
-              <span>Qty: 42</span>
-              <span className="text-primary flex items-center gap-0.5"><Check className="w-2.5 h-2.5" /> Ready</span>
-            </div>
-          </div>
-
-          <div className="p-2.5 rounded-lg bg-surface/50 border border-border-custom flex flex-col justify-between">
-            <div>
-              <div className="h-14 rounded bg-[#0D1416] border border-border-custom flex items-center justify-center mb-2">
-                <span className="font-mono text-[10px] text-primary/80">🔧 48pc Socket Set</span>
-              </div>
-              <p className="text-[11px] font-medium text-text-primary truncate">Chrome Vanadium</p>
-              <p className="font-mono text-[10px] text-primary">₱ 1,890.00</p>
-            </div>
-            <div className="mt-2 pt-1.5 border-t border-border-custom/50 flex justify-between items-center text-[9px] text-text-muted">
-              <span>Qty: 18</span>
-              <span className="text-primary flex items-center gap-0.5"><Check className="w-2.5 h-2.5" /> Ready</span>
-            </div>
-          </div>
-
-          <div className="hidden sm:flex p-2.5 rounded-lg bg-surface/50 border border-border-custom flex-col justify-between">
-            <div>
-              <div className="h-14 rounded bg-[#0D1416] border border-border-custom flex items-center justify-center mb-2">
-                <span className="font-mono text-[10px] text-primary/80">⚙️ Angle Grinder</span>
-              </div>
-              <p className="text-[11px] font-medium text-text-primary truncate">850W Heavy Duty</p>
-              <p className="font-mono text-[10px] text-primary">₱ 2,120.00</p>
-            </div>
-            <div className="mt-2 pt-1.5 border-t border-border-custom/50 flex justify-between items-center text-[9px] text-text-muted">
-              <span>Qty: 29</span>
-              <span className="text-primary flex items-center gap-0.5"><Check className="w-2.5 h-2.5" /> Ready</span>
-            </div>
-          </div>
+        {/* Hover Hint Overlay */}
+        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/gsy:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+          <span className="px-4 py-2 rounded-full bg-primary text-[#06090A] font-mono text-xs font-semibold shadow-glow-primary flex items-center gap-2">
+            <ExternalLink className="w-3.5 h-3.5" />
+            <span>Inspect Production Platform</span>
+          </span>
         </div>
       </div>
     </div>
