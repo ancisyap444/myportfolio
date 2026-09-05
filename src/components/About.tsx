@@ -7,7 +7,6 @@ export const About: React.FC = () => {
   return (
     <section id="about" className="py-24 sm:py-32 px-4 sm:px-6 relative">
       <div className="max-w-[1200px] mx-auto">
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -24,7 +23,6 @@ export const About: React.FC = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Column: Bio & Core Philosophy (7 Cols) */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -50,7 +48,6 @@ export const About: React.FC = () => {
                 from relational schemas and query execution to network packet routing and client rendering.
               </p>
 
-              {/* Quick Specs Pill Badges */}
               <div className="pt-4 border-t border-border-custom grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs">
                 <div className="p-3 rounded-xl bg-surface border border-border-custom">
                   <span className="text-text-muted block text-[11px] uppercase tracking-wider mb-1">Location</span>
@@ -67,7 +64,6 @@ export const About: React.FC = () => {
               </div>
             </div>
 
-            {/* Education Block */}
             <div className="glass-card rounded-[14px] p-6 sm:p-8 space-y-5">
               <h3 className="font-display font-semibold text-lg text-text-primary flex items-center gap-2.5">
                 <GraduationCap className="w-5 h-5 text-primary" />
@@ -102,7 +98,6 @@ export const About: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Right Column: Certifications & Competencies (5 Cols) */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -155,7 +150,6 @@ export const About: React.FC = () => {
               </div>
             </div>
 
-            {/* Quick Highlights Box */}
             <div className="p-5 rounded-[14px] bg-[#1B4332]/25 border border-primary/20 space-y-3">
               <div className="flex items-center gap-2 text-primary font-mono text-xs font-semibold uppercase tracking-wider">
                 <CheckCircle2 className="w-4 h-4" />

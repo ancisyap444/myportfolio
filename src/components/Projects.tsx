@@ -8,7 +8,6 @@ export const Projects: React.FC = () => {
   return (
     <section id="projects" className="py-24 sm:py-32 px-4 sm:px-6 relative">
       <div className="max-w-[1200px] mx-auto">
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -35,7 +34,6 @@ export const Projects: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Projects Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {PROJECTS.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />

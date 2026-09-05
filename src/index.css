@@ -18,7 +18,6 @@
     overflow-x: hidden;
   }
 
-  /* Custom subtle scrollbar */
   ::-webkit-scrollbar {
     width: 8px;
     height: 8px;

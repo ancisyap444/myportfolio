@@ -7,32 +7,26 @@ export const ReactiveProfile: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
 
-  // Mouse tilt states for 3D cursor reactivity
   const [rotateX, setRotateX] = useState<number>(0);
   const [rotateY, setRotateY] = useState<number>(0);
 
-  // Smooth springs for cursor movement
   const springConfig = { damping: 20, stiffness: 150 };
   const smoothRotateX = useSpring(rotateX, springConfig);
   const smoothRotateY = useSpring(rotateY, springConfig);
 
-  // Scroll reactivity using Framer Motion
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start end', 'end start'],
   });
 
-  // Parallax transforms based on scroll
   const imageY = useTransform(scrollYProgress, [0, 1], [-30, 40]);
   const glowScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.85, 1.15, 0.9]);
   const glowOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.2, 0.45, 0.2]);
-  
-  // Asymmetric floating chips with parallax scroll
+
   const chip1Y = useTransform(scrollYProgress, [0, 1], [40, -45]);
   const chip2Y = useTransform(scrollYProgress, [0, 1], [-20, 35]);
   const chip3Y = useTransform(scrollYProgress, [0, 1], [30, -30]);
 
-  // Handle cursor move for 3D tilt
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
@@ -41,7 +35,6 @@ export const ReactiveProfile: React.FC = () => {
     const mouseX = e.clientX - centerX;
     const mouseY = e.clientY - centerY;
 
-    // Constrain tilt to subtle degree (-8deg to 8deg)
     const rX = -(mouseY / (rect.height / 2)) * 8;
     const rY = (mouseX / (rect.width / 2)) * 8;
 
@@ -59,8 +52,7 @@ export const ReactiveProfile: React.FC = () => {
       ref={containerRef}
       className="relative w-full max-w-[440px] mx-auto select-none py-6"
     >
-      {/* Scroll-Reactive Ambient Green Backlight */}
-      <motion.div
+            <motion.div
         style={{
           scale: glowScale,
           opacity: glowOpacity,
@@ -68,8 +60,7 @@ export const ReactiveProfile: React.FC = () => {
         className="absolute inset-0 rounded-full blur-[90px] bg-gradient-to-tr from-primary/40 via-[#1B4332]/50 to-transparent pointer-events-none -z-10"
       />
 
-      {/* 3D Perspective Card Wrapper */}
-      <motion.div
+            <motion.div
         ref={cardRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
@@ -80,8 +71,7 @@ export const ReactiveProfile: React.FC = () => {
         }}
         className="relative rounded-[22px] p-2 sm:p-2.5 bg-[#06090A]/90 border border-primary/25 shadow-[0_20px_60px_rgba(0,0,0,0.8),0_0_30px_rgba(57,255,136,0.15)] transition-shadow duration-300 hover:shadow-[0_25px_70px_rgba(0,0,0,0.9),0_0_40px_rgba(57,255,136,0.28)]"
       >
-        {/* Terminal Header Bar */}
-        <div className="px-3.5 py-2 bg-surface/80 rounded-t-[16px] border-b border-border-custom flex items-center justify-between text-xs font-mono">
+                <div className="px-3.5 py-2 bg-surface/80 rounded-t-[16px] border-b border-border-custom flex items-center justify-between text-xs font-mono">
           <div className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]/80" />
             <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]/80" />
@@ -98,10 +88,8 @@ export const ReactiveProfile: React.FC = () => {
           </div>
         </div>
 
-        {/* Main Image Frame with Parallax & HUD Elements */}
-        <div className="relative rounded-b-[16px] overflow-hidden aspect-[4/5] bg-[#0A0F11]">
-          {/* Parallax Image */}
-          <motion.div
+                <div className="relative rounded-b-[16px] overflow-hidden aspect-[4/5] bg-[#0A0F11]">
+                    <motion.div
             style={{ y: imageY }}
             className="w-full h-[115%] -mt-[7.5%] relative"
           >
@@ -111,19 +99,16 @@ export const ReactiveProfile: React.FC = () => {
               className="w-full h-full object-cover object-center filter brightness-[0.98] contrast-[1.05] transition-transform duration-700 hover:scale-105"
               loading="eager"
             />
-            {/* Subtle Vignette & Gradient Mask to Dark Tone */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#06090A] via-[#06090A]/20 to-transparent pointer-events-none" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#06090A] via-[#06090A]/20 to-transparent pointer-events-none" />
             <div className="absolute inset-0 bg-primary/5 mix-blend-color-dodge pointer-events-none" />
           </motion.div>
 
-          {/* Cyber Corner HUD Brackets */}
-          <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-primary/70 pointer-events-none" />
+                    <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-primary/70 pointer-events-none" />
           <div className="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 border-primary/70 pointer-events-none" />
           <div className="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 border-primary/70 pointer-events-none" />
           <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-primary/70 pointer-events-none" />
 
-          {/* Subtle Cyber Grid Overlay */}
-          <div 
+                    <div 
             className="absolute inset-0 opacity-[0.07] pointer-events-none"
             style={{
               backgroundImage: 'linear-gradient(rgba(57,255,136,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(57,255,136,0.5) 1px, transparent 1px)',
@@ -131,8 +116,7 @@ export const ReactiveProfile: React.FC = () => {
             }}
           />
 
-          {/* Bottom Card Identity Banner */}
-          <div className="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-[#06090A]/85 backdrop-blur-md border border-border-custom pointer-events-none">
+                    <div className="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-[#06090A]/85 backdrop-blur-md border border-border-custom pointer-events-none">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-display font-bold text-text-primary tracking-tight">
@@ -149,8 +133,7 @@ export const ReactiveProfile: React.FC = () => {
           </div>
         </div>
 
-        {/* Floating Chip 1: Scroll Reactive Top-Right */}
-        <motion.div
+                <motion.div
           style={{ y: chip1Y }}
           className="absolute -top-4 -right-4 sm:-right-6 z-20 pointer-events-none"
         >
@@ -160,8 +143,7 @@ export const ReactiveProfile: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Floating Chip 2: Scroll Reactive Middle-Left */}
-        <motion.div
+                <motion.div
           style={{ y: chip2Y }}
           className="absolute top-1/2 -left-4 sm:-left-7 z-20 pointer-events-none"
         >
@@ -171,8 +153,7 @@ export const ReactiveProfile: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Floating Chip 3: Scroll Reactive Bottom-Right */}
-        <motion.div
+                <motion.div
           style={{ y: chip3Y }}
           className="absolute -bottom-3 -right-3 sm:-right-5 z-20 pointer-events-none"
         >

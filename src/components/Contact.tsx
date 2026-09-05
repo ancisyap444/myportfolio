@@ -17,7 +17,6 @@ import {
 import { PERSONAL_INFO, SOCIAL_LINKS } from '../data/portfolioData';
 import { GithubIcon, LinkedinIcon, FacebookIcon, InstagramIcon } from './Icons';
 
-// Zod validation schema
 const contactSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters long' }),
   email: z.string().email({ message: 'Please provide a valid email address' }),
@@ -52,9 +51,35 @@ export const Contact: React.FC = () => {
     setStatusMessage('');
 
     try {
-      const web3FormsKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+      const formspreeId = import.meta.env.VITE_FORMSPREE_ID?.trim().replace(/^["']|["']$/g, '');
+      const web3FormsKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY?.trim().replace(/^["']|["']$/g, '');
 
-      // Method 1: Web3Forms (Instant direct inbox delivery to yapfrancis555@gmail.com)
+      if (formspreeId) {
+        const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify({
+            name: data.name,
+            email: data.email,
+            message: data.message,
+            _subject: `[Portfolio Inquiry] New message from ${data.name}`,
+          }),
+        });
+
+        const resData = await response.json().catch(() => ({}));
+        if (response.ok) {
+          setSubmitStatus('success');
+          setStatusMessage("Message sent successfully! It has been dispatched to yapfrancis555@gmail.com.");
+          reset();
+          return;
+        } else {
+          throw new Error(resData.error || resData.message || 'Formspree transmission failed');
+        }
+      }
+
       if (web3FormsKey) {
         const response = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
@@ -83,7 +108,6 @@ export const Contact: React.FC = () => {
         }
       }
 
-      // Method 2: Vercel Serverless Function (/api/contact with Resend)
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -99,23 +123,16 @@ export const Contact: React.FC = () => {
       } else {
         const errorData = await response.json().catch(() => ({}));
         if (response.status === 404 || response.status === 501) {
-          // Local Vite dev preview without Vercel backend running
           setSubmitStatus('success');
-          setStatusMessage("Transmission received in demo mode. To receive real emails in your inbox, add your free Web3Forms key or Resend API key.");
+          setStatusMessage("Transmission received in local test mode! Configure your Web3Forms or Formspree key in .env to receive real emails.");
           reset();
         } else {
           throw new Error(errorData.error || 'Failed to dispatch message');
         }
       }
     } catch (err: any) {
-      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-        setSubmitStatus('success');
-        setStatusMessage("Transmission received in local test mode! Configure your Web3Forms or Resend key in .env to receive real emails.");
-        reset();
-      } else {
-        setSubmitStatus('error');
-        setStatusMessage(err.message || 'An unexpected error occurred. Please contact me directly via email.');
-      }
+      setSubmitStatus('error');
+      setStatusMessage(err.message || 'Unable to send message right now. Please send directly via email.');
     } finally {
       setIsSubmitting(false);
     }
@@ -134,7 +151,6 @@ export const Contact: React.FC = () => {
   return (
     <section id="contact" className="py-24 sm:py-32 px-4 sm:px-6 relative">
       <div className="max-w-[1200px] mx-auto">
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -155,7 +171,6 @@ export const Contact: React.FC = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          {/* Direct Communication Channels (5 Cols) */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -163,7 +178,6 @@ export const Contact: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="lg:col-span-5 space-y-6"
           >
-            {/* Email Card with Quick Copy */}
             <div className="glass-card rounded-[14px] p-6 space-y-4">
               <div className="flex items-center justify-between">
                 <span className="font-mono text-xs text-text-muted uppercase tracking-wider flex items-center gap-1.5">
@@ -201,7 +215,6 @@ export const Contact: React.FC = () => {
               </p>
             </div>
 
-            {/* Location & Quick Info */}
             <div className="glass-card rounded-[14px] p-6 space-y-4 font-mono text-xs">
               <div className="flex items-start gap-3">
                 <div className="p-2 rounded-lg bg-surface border border-border-custom text-primary shrink-0">
@@ -215,7 +228,6 @@ export const Contact: React.FC = () => {
               </div>
             </div>
 
-            {/* Social Channels Pill Card */}
             <div className="glass-card rounded-[14px] p-6">
               <span className="font-mono text-xs text-text-muted uppercase tracking-wider block mb-4">
                 Verified Social Profiles
@@ -242,7 +254,6 @@ export const Contact: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Interactive Form (7 Cols) */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -251,7 +262,6 @@ export const Contact: React.FC = () => {
             className="lg:col-span-7"
           >
             <div className="glass-card rounded-[14px] p-6 sm:p-8 border border-border-custom">
-              {/* Form Heading / Terminal Header */}
               <div className="flex items-center justify-between pb-4 mb-6 border-b border-border-custom">
                 <div className="flex items-center gap-2 text-xs font-mono text-text-secondary">
                   <Terminal className="w-4 h-4 text-primary" />
@@ -262,7 +272,6 @@ export const Contact: React.FC = () => {
                 </span>
               </div>
 
-              {/* Status Alert Banner */}
               <div aria-live="polite">
                 <AnimatePresence>
                   {submitStatus === 'success' && (
@@ -289,8 +298,14 @@ export const Contact: React.FC = () => {
                     >
                       <AlertCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
                       <div>
-                        <h4 className="text-sm font-semibold text-red-400">Transmission Failed</h4>
+                        <h4 className="text-sm font-semibold text-red-400">Transmission Notice</h4>
                         <p className="text-xs text-text-primary/90 mt-0.5">{statusMessage}</p>
+                        <a
+                          href={`mailto:${PERSONAL_INFO.email}?subject=Portfolio%20Inquiry`}
+                          className="mt-2.5 inline-flex items-center gap-1.5 text-xs font-mono text-primary hover:text-[#48ff92] underline underline-offset-4"
+                        >
+                          <span>Send directly to {PERSONAL_INFO.email} ➜</span>
+                        </a>
                       </div>
                     </motion.div>
                   )}
@@ -298,7 +313,6 @@ export const Contact: React.FC = () => {
               </div>
 
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
-                {/* Name Input */}
                 <div>
                   <label htmlFor="contact-name" className="block text-xs font-mono text-text-primary mb-2">
                     Name <span className="text-primary">*</span>
@@ -324,7 +338,6 @@ export const Contact: React.FC = () => {
                   )}
                 </div>
 
-                {/* Email Input */}
                 <div>
                   <label htmlFor="contact-email" className="block text-xs font-mono text-text-primary mb-2">
                     Email Address <span className="text-primary">*</span>
@@ -350,7 +363,6 @@ export const Contact: React.FC = () => {
                   )}
                 </div>
 
-                {/* Message Input */}
                 <div>
                   <label htmlFor="contact-message" className="block text-xs font-mono text-text-primary mb-2">
                     Message <span className="text-primary">*</span>
@@ -375,7 +387,6 @@ export const Contact: React.FC = () => {
                   )}
                 </div>
 
-                {/* Submit Button */}
                 <button
                   type="submit"
                   disabled={isSubmitting}

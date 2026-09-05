@@ -25,11 +25,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
       }`}
     >
       <div className={`grid grid-cols-1 ${isFeatured ? 'lg:grid-cols-12 gap-8' : 'gap-6'} p-6 sm:p-8 flex-1`}>
-        {/* Visual Preview Container */}
-        <div className={`${isFeatured ? 'lg:col-span-7' : 'w-full'} flex flex-col`}>
+                <div className={`${isFeatured ? 'lg:col-span-7' : 'w-full'} flex flex-col`}>
           <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden border border-border-custom bg-[#080D0F] group">
-            {/* Render interactive vector preview */}
-            <div className="w-full h-full transition-transform duration-500 group-hover:scale-[1.02]">
+                        <div className="w-full h-full transition-transform duration-500 group-hover:scale-[1.02]">
               {project.id === 'gsy-hardware' ? (
                 <GsyHardwarePreview />
               ) : (
@@ -37,8 +35,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
               )}
             </div>
 
-            {/* Subtle Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#06090A]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none flex items-end p-4">
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#06090A]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none flex items-end p-4">
               <span className="font-mono text-xs text-primary flex items-center gap-1.5 bg-[#06090A]/90 px-3 py-1 rounded-full border border-primary/30">
                 <ExternalLink className="w-3.5 h-3.5" /> Inspect Architecture
               </span>
@@ -46,11 +43,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
           </div>
         </div>
 
-        {/* Project Details Content */}
-        <div className={`${isFeatured ? 'lg:col-span-5' : 'w-full'} flex flex-col justify-between space-y-5`}>
+                <div className={`${isFeatured ? 'lg:col-span-5' : 'w-full'} flex flex-col justify-between space-y-5`}>
           <div>
-            {/* Header / Badges */}
-            <div className="flex items-center justify-between gap-2 mb-3">
+                        <div className="flex items-center justify-between gap-2 mb-3">
               <div className="flex items-center gap-2">
                 <span className="font-mono text-xs text-primary/80 uppercase tracking-wider">
                   {project.type}
@@ -67,8 +62,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
               )}
             </div>
 
-            {/* Title & Subtitle */}
-            <h3 className="font-display font-bold text-xl sm:text-2xl text-text-primary tracking-tight mb-2">
+                        <h3 className="font-display font-bold text-xl sm:text-2xl text-text-primary tracking-tight mb-2">
               {project.title}
             </h3>
             <p className="text-sm font-medium text-text-secondary/90 mb-3">
@@ -78,8 +72,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
               {project.description}
             </p>
 
-            {/* Highlights List */}
-            {isFeatured && project.highlights && (
+                        {isFeatured && project.highlights && (
               <div className="space-y-2 mb-5">
                 {project.highlights.map((highlight, hIdx) => (
                   <div key={hIdx} className="flex items-start gap-2 text-xs text-text-secondary leading-relaxed">
@@ -90,8 +83,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
               </div>
             )}
 
-            {/* Tech Tags */}
-            <div className="flex flex-wrap gap-1.5 mb-6">
+                        <div className="flex flex-wrap gap-1.5 mb-6">
               {project.tags.map((tag) => (
                 <span
                   key={tag}
@@ -103,8 +95,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
             </div>
           </div>
 
-          {/* Action Links: Live Demo & Source (GitHub) */}
-          <div className="pt-4 border-t border-border-custom flex items-center gap-3">
+                    <div className="pt-4 border-t border-border-custom flex items-center gap-3">
             {project.demoUrl && (
               <a
                 href={project.demoUrl}

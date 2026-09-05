@@ -1,14 +1,6 @@
-/**
- * Vercel Serverless Function: /api/contact
- * Handles contact form submissions and forwards them to Francis Vernard Yap via Resend.
- * 
- * Environment Variables required in Vercel Project Settings:
- * - RESEND_API_KEY: Your Resend API key (starts with "re_...")
- * - CONTACT_RECIPIENT_EMAIL: (Optional) Defaults to yapfrancis555@gmail.com
- */
 
 export const config = {
-  runtime: 'edge', // Edge runtime for fast worldwide execution
+  runtime: 'edge', 
 };
 
 export default async function handler(req: Request) {
@@ -23,7 +15,7 @@ export default async function handler(req: Request) {
     const body = await req.json();
     const { name, email, message } = body;
 
-    // Validation checks
+    
     if (!name || typeof name !== 'string' || name.trim().length < 2) {
       return new Response(
         JSON.stringify({ error: 'Name must be at least 2 characters' }),
@@ -48,7 +40,7 @@ export default async function handler(req: Request) {
     const resendApiKey = process.env.RESEND_API_KEY;
     const recipientEmail = process.env.CONTACT_RECIPIENT_EMAIL || 'yapfrancis555@gmail.com';
 
-    // If Resend API key is not configured (e.g. initial dev preview), log and return helpful instructions
+    
     if (!resendApiKey) {
       console.warn(
         '[Contact API] RESEND_API_KEY is not configured in environment variables. ' +
@@ -65,9 +57,7 @@ export default async function handler(req: Request) {
       );
     }
 
-    // Dispatch email via Resend HTTP API
     const resendResponse = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
       headers: {
         'Authorization': `Bearer ${resendApiKey}`,
         'Content-Type': 'application/json',

@@ -44,15 +44,13 @@ export const Hero: React.FC = () => {
     >
       <div className="max-w-[1200px] w-full mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          {/* Left Column: Hero Narrative & Terminal Info (7 Cols) */}
-          <motion.div
+                    <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
             className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left"
           >
-            {/* Status Eyebrow */}
-            <motion.div variants={itemVariants} className="mb-5 inline-flex items-center">
+                        <motion.div variants={itemVariants} className="mb-5 inline-flex items-center">
               <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-surface border border-primary/20 backdrop-blur-sm shadow-[0_0_15px_rgba(57,255,136,0.1)]">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
@@ -64,16 +62,14 @@ export const Hero: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* Large Headline */}
-            <motion.h1
+                        <motion.h1
               variants={itemVariants}
               className="font-display font-bold text-text-primary tracking-tight leading-[1.08] text-[clamp(38px,5.5vw,68px)] mb-5 text-balance"
             >
               {PERSONAL_INFO.name}
             </motion.h1>
 
-            {/* Subhead / Technical Pitch */}
-            <motion.div variants={itemVariants} className="space-y-3 mb-8 max-w-xl">
+                        <motion.div variants={itemVariants} className="space-y-3 mb-8 max-w-xl">
               <p className="text-lg sm:text-xl font-medium text-text-primary/90 leading-snug">
                 Full Stack Developer specializing in{' '}
                 <span className="text-primary font-mono font-medium">database-driven systems</span>,{' '}
@@ -84,8 +80,7 @@ export const Hero: React.FC = () => {
               </p>
             </motion.div>
 
-            {/* Interactive Terminal Snippet Preview */}
-            <motion.div
+                        <motion.div
               variants={itemVariants}
               className="w-full max-w-lg mb-8 rounded-[14px] bg-[#06090A]/90 border border-border-custom shadow-2xl text-left overflow-hidden hidden sm:block"
             >
@@ -124,13 +119,11 @@ export const Hero: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* Action CTAs */}
-            <motion.div
+                        <motion.div
               variants={itemVariants}
               className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-8 w-full sm:w-auto"
             >
-              {/* Primary Filled CTA with Glow */}
-              <a
+                            <a
                 href="#projects"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-[14px] bg-primary text-[#06090A] font-semibold text-sm tracking-wide shadow-glow-subtle hover:shadow-glow-primary hover:bg-[#48ff92] transition-all duration-200 active:scale-95 focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
               >
@@ -138,8 +131,7 @@ export const Hero: React.FC = () => {
                 <span>View Projects</span>
               </a>
 
-              {/* Ghost / Outline CTA for CV Download */}
-              <a
+                            <a
                 href={`/${PERSONAL_INFO.cvFileName}`}
                 download
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-[14px] bg-surface hover:bg-surface-hover border border-border-custom hover:border-primary/40 text-text-primary text-sm font-medium transition-all duration-200 hover:shadow-glow-subtle active:scale-95 focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
@@ -150,8 +142,7 @@ export const Hero: React.FC = () => {
               </a>
             </motion.div>
 
-            {/* Social Icons Row */}
-            <motion.div
+                        <motion.div
               variants={itemVariants}
               className="flex items-center gap-2.5"
               aria-label="Social profiles and contact methods"
@@ -171,8 +162,7 @@ export const Hero: React.FC = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right Column: Creative Scroll-Reactive Profile (5 Cols) */}
-          <motion.div
+                    <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
@@ -182,8 +172,7 @@ export const Hero: React.FC = () => {
           </motion.div>
         </div>
 
-        {/* Scroll Down Indicator */}
-        <div className="flex justify-center mt-12 sm:mt-16">
+                <div className="flex justify-center mt-12 sm:mt-16">
           <a
             href="#about"
             className="inline-flex items-center justify-center text-text-muted hover:text-primary transition-colors focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2 rounded-full p-2"

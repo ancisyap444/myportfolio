@@ -15,7 +15,6 @@ export const Skills: React.FC = () => {
   return (
     <section id="skills" className="py-24 sm:py-32 px-4 sm:px-6 relative">
       <div className="max-w-[1200px] mx-auto">
-        {/* Section Eyebrow & Title */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -35,7 +34,6 @@ export const Skills: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Categories Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {SKILL_CATEGORIES.map((category, catIdx) => (
             <motion.div
@@ -47,7 +45,6 @@ export const Skills: React.FC = () => {
               className="glass-card rounded-[14px] p-6 flex flex-col justify-between hover:border-primary/30 transition-all duration-300"
             >
               <div>
-                {/* Category Header */}
                 <div className="flex items-center gap-2.5 mb-5 pb-3 border-b border-border-custom">
                   <div className="p-2 rounded-lg bg-surface border border-border-custom">
                     {categoryIcons[category.title] || <Code2 className="w-4 h-4 text-primary" />}
@@ -57,7 +54,6 @@ export const Skills: React.FC = () => {
                   </h3>
                 </div>
 
-                {/* Badge Grid (Mono font, green border, transparent fill, subtle hover lift + glow) */}
                 <div className="flex flex-wrap gap-2">
                   {category.skills.map((skill) => (
                     <motion.span
@@ -72,7 +68,6 @@ export const Skills: React.FC = () => {
                 </div>
               </div>
 
-              {/* Counter footer */}
               <div className="mt-6 pt-3 border-t border-border-custom/60 flex items-center justify-between text-[11px] font-mono text-text-muted">
                 <span>{category.skills.length} technologies</span>
                 <span className="text-primary/70">ready</span>

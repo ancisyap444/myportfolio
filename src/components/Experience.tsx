@@ -7,7 +7,6 @@ export const Experience: React.FC = () => {
   return (
     <section id="experience" className="py-24 sm:py-32 px-4 sm:px-6 relative">
       <div className="max-w-[1200px] mx-auto">
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -27,7 +26,6 @@ export const Experience: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Timeline Container */}
         <div className="relative pl-6 sm:pl-10 border-l border-primary/20 space-y-12">
           {EXPERIENCES.map((exp, idx) => (
             <motion.div
@@ -38,14 +36,11 @@ export const Experience: React.FC = () => {
               transition={{ duration: 0.6, delay: idx * 0.15 }}
               className="relative group"
             >
-              {/* Timeline Glowing Node */}
               <div className="absolute -left-[31px] sm:-left-[47px] top-1.5 flex items-center justify-center">
                 <div className="w-3.5 h-3.5 rounded-full bg-[#06090A] border-2 border-primary shadow-[0_0_12px_#39FF88] group-hover:scale-125 transition-transform" />
               </div>
 
-              {/* Card Container */}
               <div className="glass-card rounded-[14px] p-6 sm:p-8 hover:border-primary/40 hover:shadow-glow-subtle transition-all duration-300">
-                {/* Header Information */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4 pb-4 border-b border-border-custom">
                   <div>
                     <div className="flex items-center gap-2 mb-1">
@@ -73,7 +68,6 @@ export const Experience: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Duty / Accomplishment Bullets */}
                 <div className="space-y-3 mb-6">
                   {exp.highlights.map((bullet, bIdx) => (
                     <div key={bIdx} className="flex items-start gap-3 text-sm text-text-secondary leading-relaxed">
@@ -83,7 +77,6 @@ export const Experience: React.FC = () => {
                   ))}
                 </div>
 
-                {/* Tech Badges */}
                 <div className="pt-4 border-t border-border-custom/60 flex flex-wrap items-center gap-2">
                   <span className="text-xs font-mono text-text-muted mr-1">Stack:</span>
                   {exp.technologies.map((tech) => (

@@ -15,7 +15,6 @@ export const Footer: React.FC = () => {
     <footer className="border-t border-border-custom bg-[#06090A] relative z-10 py-12 px-4 sm:px-6">
       <div className="max-w-[1200px] mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-border-custom/60">
-          {/* Brand & Terminal Tagline */}
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-surface border border-border-custom flex items-center justify-center">
               <Terminal className="w-4 h-4 text-primary" />
@@ -30,7 +29,6 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Social Links */}
           <div className="flex items-center gap-2.5">
             {SOCIAL_LINKS.map((social) => (
               <a
@@ -50,7 +48,6 @@ export const Footer: React.FC = () => {
             ))}
           </div>
 
-          {/* Back to top button */}
           <button
             type="button"
             onClick={scrollToTop}
@@ -62,7 +59,6 @@ export const Footer: React.FC = () => {
           </button>
         </div>
 
-        {/* Bottom Copyright & Status */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-text-muted">
           <div>
             © 2026 Francis Vernard Yap. All rights reserved.

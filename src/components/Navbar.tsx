@@ -8,7 +8,6 @@ export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
 
-  // Track scroll state for enhanced background blur and border
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -17,7 +16,6 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // IntersectionObserver for scroll-spy (threshold ~0.4)
   useEffect(() => {
     const sectionIds = ['hero', ...NAV_LINKS.map(link => link.href.replace('#', ''))];
     const observerCallback: IntersectionObserverCallback = (entries) => {
@@ -45,7 +43,6 @@ export const Navbar: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Close mobile menu on Escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && mobileMenuOpen) {
@@ -56,7 +53,6 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [mobileMenuOpen]);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -77,8 +73,7 @@ export const Navbar: React.FC = () => {
       }`}
     >
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 flex items-center justify-between">
-        {/* Logo / Brand */}
-        <a
+                <a
           href="#hero"
           className="group flex items-center gap-2.5 font-mono text-sm tracking-wide text-text-primary focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2 rounded-lg p-1"
           aria-label="Francis Vernard Yap homepage"
@@ -91,8 +86,7 @@ export const Navbar: React.FC = () => {
           </span>
         </a>
 
-        {/* Desktop Navigation Links */}
-        <nav 
+                <nav 
           className="hidden md:flex items-center gap-1 bg-surface/60 backdrop-blur-md border border-border-custom rounded-full px-4 py-1.5"
           aria-label="Main Navigation"
         >
@@ -123,8 +117,7 @@ export const Navbar: React.FC = () => {
           })}
         </nav>
 
-        {/* Action Button: Download CV */}
-        <div className="hidden md:flex items-center gap-3">
+                <div className="hidden md:flex items-center gap-3">
           <a
             href={`/${PERSONAL_INFO.cvFileName}`}
             download
@@ -136,8 +129,7 @@ export const Navbar: React.FC = () => {
           </a>
         </div>
 
-        {/* Mobile Menu Toggle Button */}
-        <button
+                <button
           type="button"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="md:hidden p-2 rounded-lg bg-surface border border-border-custom text-text-primary hover:text-primary focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
@@ -149,8 +141,7 @@ export const Navbar: React.FC = () => {
         </button>
       </div>
 
-      {/* Mobile Slide-Down Drawer */}
-      <AnimatePresence>
+            <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
             id="mobile-navigation"

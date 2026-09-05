@@ -6,7 +6,6 @@ export const BackgroundGrid: React.FC = () => {
       className="fixed inset-0 pointer-events-none z-0 overflow-hidden" 
       aria-hidden="true"
     >
-      {/* Subtle radial ambient glow at top and bottom */}
       <div 
         className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[450px] rounded-full blur-[140px] opacity-20 pointer-events-none"
         style={{
@@ -26,7 +25,6 @@ export const BackgroundGrid: React.FC = () => {
         }}
       />
 
-      {/* Technical Grid Pattern with green accent lines */}
       <div 
         className="absolute inset-0 opacity-[0.14]"
         style={{
@@ -40,7 +38,6 @@ export const BackgroundGrid: React.FC = () => {
         }}
       />
 
-      {/* Subtle Matrix Dot Nodes at intervals */}
       <div 
         className="absolute inset-0 opacity-[0.25]"
         style={{
