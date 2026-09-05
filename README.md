@@ -35,7 +35,7 @@ A fast, single-page, dark-mode developer portfolio landing page built with **Rea
 
 ### 1. Clone & Install
 ```bash
-git clone https://github.com/francisyap/myporfolio.git
+git clone https://github.com/ancisyap444/myporfolio.git
 cd myporfolio
 npm install
 ```
