@@ -2,12 +2,14 @@ import React from 'react';
 import { motion, type Variants } from 'framer-motion';
 import { ArrowDown, Download, Mail, MapPin, Sparkles, Terminal } from 'lucide-react';
 import { PERSONAL_INFO, SOCIAL_LINKS } from '../data/portfolioData';
-import { GithubIcon, LinkedinIcon } from './Icons';
+import { GithubIcon, LinkedinIcon, FacebookIcon, InstagramIcon } from './Icons';
 import { ReactiveProfile } from './ReactiveProfile';
 
 const iconMap: Record<string, React.ReactNode> = {
   Github: <GithubIcon className="w-5 h-5" />,
   Linkedin: <LinkedinIcon className="w-5 h-5" />,
+  Facebook: <FacebookIcon className="w-5 h-5" />,
+  Instagram: <InstagramIcon className="w-5 h-5" />,
   Mail: <Mail className="w-5 h-5" />,
 };
 
@@ -151,7 +153,7 @@ export const Hero: React.FC = () => {
             {/* Social Icons Row */}
             <motion.div
               variants={itemVariants}
-              className="flex items-center gap-3"
+              className="flex items-center gap-2.5"
               aria-label="Social profiles and contact methods"
             >
               {SOCIAL_LINKS.map((social) => (

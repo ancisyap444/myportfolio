@@ -4,7 +4,7 @@ A fast, single-page, dark-mode developer portfolio landing page built with **Rea
 
 ---
 
-## ⚡ Tech Stack
+## Tech Stack
 
 - **Framework**: React 19 + Vite (TypeScript)
 - **Styling**: Tailwind CSS (custom theme tokens, glow utilities, dark mode `#06090A`)
@@ -17,7 +17,7 @@ A fast, single-page, dark-mode developer portfolio landing page built with **Rea
 
 ---
 
-## 🎨 Design System Tokens
+## Design System Tokens
 
 | Element | Token / Value | Description |
 | :--- | :--- | :--- |
@@ -31,7 +31,7 @@ A fast, single-page, dark-mode developer portfolio landing page built with **Rea
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Clone & Install
 ```bash
@@ -54,7 +54,7 @@ npm run preview
 
 ---
 
-## 📬 Contact Form Backend Setup
+## Contact Form Backend Setup
 
 ### Option A: Vercel Serverless Function + Resend (Default)
 1. Sign up for free at [resend.com](https://resend.com) and generate an API key.
@@ -80,14 +80,14 @@ const response = await fetch("https://api.web3forms.com/submit", {
 
 ---
 
-## 📄 CV / Resume Download
+## CV / Resume Download
 The CV file is located at `public/francis-vernard-yap-cv.pdf`. To replace it with an updated PDF:
 1. Save your new resume PDF as `public/francis-vernard-yap-cv.pdf`.
 2. The navbar and hero download buttons will automatically deliver your updated document.
 
 ---
 
-## 🚢 Deployment to Vercel
+## Deployment to Vercel
 
 1. Initialize git and push to your GitHub repository:
    ```bash

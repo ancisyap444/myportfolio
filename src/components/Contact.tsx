@@ -15,7 +15,7 @@ import {
   Terminal
 } from 'lucide-react';
 import { PERSONAL_INFO, SOCIAL_LINKS } from '../data/portfolioData';
-import { GithubIcon, LinkedinIcon } from './Icons';
+import { GithubIcon, LinkedinIcon, FacebookIcon, InstagramIcon } from './Icons';
 
 // Zod validation schema
 const contactSchema = z.object({
@@ -202,18 +202,20 @@ export const Contact: React.FC = () => {
               <span className="font-mono text-xs text-text-muted uppercase tracking-wider block mb-4">
                 Verified Social Profiles
               </span>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2.5">
                 {SOCIAL_LINKS.map((social) => (
                   <a
                     key={social.name}
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-surface hover:bg-surface-hover border border-border-custom hover:border-primary/40 text-xs font-mono text-text-primary hover:text-primary transition-all hover:shadow-glow-subtle focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
+                    className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-surface hover:bg-surface-hover border border-border-custom hover:border-primary/40 text-xs font-mono text-text-primary hover:text-primary transition-all hover:shadow-glow-subtle focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
                     aria-label={social.ariaLabel}
                   >
                     {social.name === 'GitHub' && <GithubIcon className="w-4 h-4 text-primary" />}
                     {social.name === 'LinkedIn' && <LinkedinIcon className="w-4 h-4 text-primary" />}
+                    {social.name === 'Facebook' && <FacebookIcon className="w-4 h-4 text-primary" />}
+                    {social.name === 'Instagram' && <InstagramIcon className="w-4 h-4 text-primary" />}
                     {social.name === 'Email' && <Mail className="w-4 h-4 text-primary" />}
                     <span>{social.name}</span>
                   </a>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowUp, Mail, Terminal } from 'lucide-react';
 import { PERSONAL_INFO, SOCIAL_LINKS } from '../data/portfolioData';
-import { GithubIcon, LinkedinIcon } from './Icons';
+import { GithubIcon, LinkedinIcon, FacebookIcon, InstagramIcon } from './Icons';
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -31,7 +31,7 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* Social Links */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5">
             {SOCIAL_LINKS.map((social) => (
               <a
                 key={social.name}
@@ -43,6 +43,8 @@ export const Footer: React.FC = () => {
               >
                 {social.name === 'GitHub' && <GithubIcon className="w-4 h-4" />}
                 {social.name === 'LinkedIn' && <LinkedinIcon className="w-4 h-4" />}
+                {social.name === 'Facebook' && <FacebookIcon className="w-4 h-4" />}
+                {social.name === 'Instagram' && <InstagramIcon className="w-4 h-4" />}
                 {social.name === 'Email' && <Mail className="w-4 h-4" />}
               </a>
             ))}

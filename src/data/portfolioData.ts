@@ -33,6 +33,18 @@ export const SOCIAL_LINKS: SocialLink[] = [
     ariaLabel: 'Francis Vernard Yap LinkedIn profile',
   },
   {
+    name: 'Facebook',
+    url: 'https://www.facebook.com/francis.yap.295724',
+    icon: 'Facebook',
+    ariaLabel: 'Francis Vernard Yap Facebook profile',
+  },
+  {
+    name: 'Instagram',
+    url: 'https://www.instagram.com/francis_yappy/',
+    icon: 'Instagram',
+    ariaLabel: 'Francis Vernard Yap Instagram profile',
+  },
+  {
     name: 'Email',
     url: 'mailto:yapfrancis555@gmail.com',
     icon: 'Mail',
