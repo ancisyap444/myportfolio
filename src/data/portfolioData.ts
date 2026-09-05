@@ -22,7 +22,7 @@ export const PERSONAL_INFO = {
 export const SOCIAL_LINKS: SocialLink[] = [
   {
     name: 'GitHub',
-    url: 'https://github.com/francisyap',
+    url: 'https://github.com/ancisyap444',
     icon: 'Github',
     ariaLabel: 'Francis Vernard Yap GitHub profile',
   },
@@ -141,7 +141,7 @@ export const PROJECTS: ProjectItem[] = [
     tags: ['React', 'Tailwind CSS', 'Supabase', 'RLS', 'E-commerce', 'Vite', 'TypeScript'],
     techStack: ['React (Vite)', 'Tailwind CSS', 'Supabase', 'PostgreSQL', 'RLS Auth', 'Lucide Icons'],
     demoUrl: 'https://gsy-hardware.vercel.app',
-    repoUrl: 'https://github.com/francisyap/gsy-hardware',
+    repoUrl: 'https://github.com/ancisyap444/gsy-hardware',
   },
   {
     id: 'budget-tracker',
@@ -159,8 +159,8 @@ export const PROJECTS: ProjectItem[] = [
     ],
     tags: ['Flutter', 'Dart', 'Supabase', 'Mobile', 'Data Visualization'],
     techStack: ['Flutter', 'Dart', 'Supabase', 'PostgreSQL', 'Charts Engine'],
-    demoUrl: 'https://github.com/francisyap/budget-tracker/releases',
-    repoUrl: 'https://github.com/francisyap/budget-tracker',
+    demoUrl: 'https://github.com/ancisyap444/budget-tracker/releases',
+    repoUrl: 'https://github.com/ancisyap444/budget-tracker',
   },
 ];
 
